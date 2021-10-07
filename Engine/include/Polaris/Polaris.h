@@ -15,7 +15,7 @@ namespace Polaris
     //structures
     struct QueueFamilyIndices 
     {
-        uint32_t graphicsFamily;
+        std::optional<uint32_t> graphicsFamily;
     };
 
     class Polaris

@@ -14,6 +14,7 @@ namespace Polaris
         createInstance();
         setupDebugMessenger();
         pickPhysicalDevice();
+        createLogicalDevice();
     }
 
     Polaris::~Polaris()

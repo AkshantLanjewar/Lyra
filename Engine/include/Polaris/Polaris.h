@@ -16,6 +16,11 @@ namespace Polaris
     struct QueueFamilyIndices 
     {
         std::optional<uint32_t> graphicsFamily;
+
+        bool isComplete()
+        {
+            return graphicsFamily.has_value();
+        }
     };
 
     class Polaris
@@ -35,6 +40,9 @@ namespace Polaris
         void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo);
 
         VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
+        VkDevice device;
+
+        void createLogicalDevice();
         void pickPhysicalDevice();
         int rateDeviceSuitability(VkPhysicalDevice device);
 

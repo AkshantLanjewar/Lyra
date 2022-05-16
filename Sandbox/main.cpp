@@ -3,13 +3,10 @@
 #include <Polaris/Polaris.h>
 
 int main() {
-    Lyra::Window _window;
-    Polaris::Polaris _renderer;
+    Polaris::Polaris engine;
     
-
-    _window.CreateWindow();
-    _window.WindowLoop();
-    _window.DestroyWindow();
-
+    engine.Loop();
+    engine.Cleanup();
+    
     return 0;
 }

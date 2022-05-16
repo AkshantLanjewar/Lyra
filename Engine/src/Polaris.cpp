@@ -11,8 +11,11 @@ namespace Polaris
 
     Polaris::Polaris()
     {
+        createWindow();
+
         createInstance();
         setupDebugMessenger();
+        createSurface();
         pickPhysicalDevice();
         createLogicalDevice();
     }
@@ -24,8 +27,10 @@ namespace Polaris
 
     void Polaris::Cleanup()
     {
+        vkDestroyDevice(device, nullptr);
         if(enableValidationLayers)
             DestroyDebugUtilsMessengerEXT(instance, debugMessenger, nullptr);
+        vkDestroySurfaceKHR(instance, surface, nullptr);
         vkDestroyInstance(instance, nullptr);
     }
 }

@@ -9,7 +9,8 @@ endif(MSVC)
 add_library(${PROJECT_NAME} src/Polaris.cpp 
                             src/vk/instance.cpp
                             src/vk/device.cpp
-                            src/Window.cpp)
+                            src/vk/presentation.cpp
+                            src/window/window.cpp)
 add_library(lyra::engine ALIAS ${PROJECT_NAME})
 
 target_link_directories(${PROJECT_NAME} PUBLIC ../lib/vulkan/lib)

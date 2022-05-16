@@ -8,29 +8,32 @@
 #include <iostream>
 #include <map>
 #include <optional>
+#include <set>
+
+#include "PolarisHelpers.h"
 
 namespace Polaris
 {
-
-    //structures
-    struct QueueFamilyIndices 
-    {
-        std::optional<uint32_t> graphicsFamily;
-
-        bool isComplete()
-        {
-            return graphicsFamily.has_value();
-        }
-    };
-
     class Polaris
     {
     public:
         Polaris();
         ~Polaris();
 
+        void Loop();
         void Cleanup();
+    
+    private:
+        void createWindow();
+        void createSurface();
 
+        GLFWwindow* window;
+        VkSurfaceKHR surface;
+        VkQueue presentQueue;
+
+        const std::vector<const char*> deviceExtensions = {
+            VK_KHR_SWAPCHAIN_EXTENSION_NAME  
+        };
     private:
         VkInstance instance;
         void createInstance();
@@ -41,15 +44,21 @@ namespace Polaris
 
         VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
         VkDevice device;
+        VkQueue graphicsQueue;
 
         void createLogicalDevice();
         void pickPhysicalDevice();
         int rateDeviceSuitability(VkPhysicalDevice device);
+        bool isDeviceSuitable(VkPhysicalDevice device);
 
         QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
 
         const std::vector<const char*> validationLayers = {
             "VK_LAYER_KHRONOS_validation"
+        };
+
+        const std::vector<const char*> deviceExtensions = {
+            VK_KHR_SWAPCHAIN_EXTENSION_NAME
         };
 
         bool checkValidationLayerSupport();
